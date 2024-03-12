@@ -3,6 +3,9 @@ import { NgFor,UpperCasePipe,NgIf } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { Member } from '../member/member1';
+import { ActivatedRoute } from '@angular/router';
+import { MemberService } from '../member.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-member-details',
   standalone: true,
@@ -11,5 +14,17 @@ import { Member } from '../member/member1';
   styleUrl: './member-details.component.css'
 })
 export class MemberDetailsComponent {
-  @Input() mymember?:Member
+  mymember?:Member
+  constructor(private memberservice:MemberService , private locationservice:Location , private activatedroute :ActivatedRoute){}
+  ngOnInit():void{
+    this.getMember();
+  }
+  getMember(){
+    const id=Number(this.activatedroute.snapshot.paramMap.get('id'));
+    this.memberservice.getMem(id).subscribe(mem=>this.mymember=mem);
+
+  }
+  goback(){
+    this.locationservice.back();
+  }
 }

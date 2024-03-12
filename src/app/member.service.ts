@@ -14,4 +14,9 @@ export class MemberService {
      this.messageService.add("Members are displayed....")
      return message;
   }
+  getMem(id:number):Observable<Member>{
+    const mymem=MEMBERS.find((mem)=>mem.id===id)!;
+    this.messageService.add(`member displayed is ${id}`);
+    return of(mymem);
+  }
 }

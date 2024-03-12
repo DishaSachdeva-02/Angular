@@ -7,10 +7,11 @@ import { NgIf } from '@angular/common';
 import { MemberDetailsComponent } from '../member-details/member-details.component';
 import { MemberService } from '../member.service';
 import { MessageService } from '../message.service';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-member',
   standalone: true,
-  imports: [FormsModule,NgFor,NgIf,MemberDetailsComponent],
+  imports: [FormsModule,NgFor,NgIf,MemberDetailsComponent,RouterModule],
   templateUrl: './member.component.html',
   styleUrl: './member.component.css'
 })
@@ -23,12 +24,4 @@ export class MemberComponent {
   getMembers():void{
     this.memberservice.getMember().subscribe(members=>this.member=members);
   }
-  selectedMember?:Member
-  
-  onSelect(memberdetails:Member):void{
-
-    this.selectedMember=memberdetails;
-    this.messageService.add(`Member clicked is... ${memberdetails.name}`)
-  }
-
 }
