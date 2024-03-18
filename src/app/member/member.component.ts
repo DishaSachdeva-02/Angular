@@ -24,4 +24,16 @@ export class MemberComponent {
   getMembers():void{
     this.memberservice.getMember().subscribe(members=>this.member=members);
   }
+  add(name:string){
+    name = name.trim();
+    if(!name){
+      return 
+    }
+
+    this.memberservice.addMember({name} as Member).subscribe(m=>this.member.push(m));
+  }
+  delete(member: Member): void{
+    this.member = this.member.filter(m => m!= member);
+    this.memberservice.deleteMember(member.id).subscribe();
+  }
 }

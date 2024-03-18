@@ -27,4 +27,11 @@ export class MemberDetailsComponent {
   goback(){
     this.locationservice.back();
   }
+  save(): void {
+    if (this.mymember) {
+      this.memberservice
+        .updateMember(this.mymember)
+        .subscribe(() => this.goback());
+    }
+  }
 }
