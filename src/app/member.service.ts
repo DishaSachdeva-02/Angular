@@ -12,7 +12,7 @@ export class MemberService {
   httpOptions={headers:new HttpHeaders({'Content-type':'application-json'})}
   constructor(private messageService:MessageService , private http:HttpClient) { }
   getMember():Observable<Member[]>{
-     
+    
      this.messageService.add("Members are displayed....")
      return this.http.get<Member[]>(this.membersurl);
   }
